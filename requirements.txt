@@ -1,0 +1,5 @@
+Django==1.10.2
+Markdown==2.6.7
+django-markupfield==1.4.1
+restless==2.0.1
+six==1.10.0
