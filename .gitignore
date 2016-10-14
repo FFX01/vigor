@@ -3,3 +3,12 @@ include/
 lib/
 .idea/
 *.iml
+*.sqlite3
+vigor/api/__pycache__/
+vigor/disciplines/__pycache__/
+vigor/disciplines/migrations/__pycache__/
+vigor/exercises/__pycache__/
+vigor/exercises/migrations/__pycache__/
+vigor/users/__pycache__/
+vigor/users/migrations/__pycache__/
+vigor/vigor/__pycache__/
