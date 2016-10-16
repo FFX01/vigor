@@ -23,7 +23,8 @@ class Discipline(models.Model):
     practitioners = models.ManyToManyField(
         to=settings.AUTH_USER_MODEL,
         related_name='practiced_disciplines',
-        through='disciplines.DisciplinePractice'
+        through='disciplines.DisciplinePractice',
+        blank=True
     )
 
     created = models.DateField(
@@ -66,9 +67,4 @@ class DisciplinePractice(models.Model):
     notes = MarkupField(
         markup_type='markdown',
         escape_html=True
-    )
-
-    times_practiced = models.PositiveIntegerField(
-        blank=True,
-        default=0
     )

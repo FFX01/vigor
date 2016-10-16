@@ -17,8 +17,10 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 from users.api import UserResource
+from disciplines.api import DisciplineResource
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'api/users/', include(UserResource.urls()))
+    url(r'api/users/', include(UserResource.urls())),
+    url(r'api/disciplines/', include(DisciplineResource.urls()))
 ]

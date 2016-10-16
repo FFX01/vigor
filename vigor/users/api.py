@@ -19,23 +19,34 @@ class UserResource(PaginatedDjangoResource):
 
     def is_authenticated(self):
         if self.endpoint in ('update', 'delete'):
-            return self.request.user.is_authenticateed()
+            return self.request.user.is_authenticated()
         return True
 
     def create(self):
-        return self.model.objects.create_user(
+        obj = self.model.objects.create_user(
             username=self.data.get("username"),
             password=self.data.get("password"),
             email=self.data.get("email"),
             height=self.data.get("height", 0),
             weight=self.data.get("weight", 0)
         )
+        return obj
 
     def list(self, *args, **kwargs):
-        results = self.apply_filters(
-            self.model.objects.all()
-        )
-        return self.paginate_objects(results)
+        return self.get_obj_list()
 
     def detail(self, pk):
-        return self.model.objects.get(id=pk)
+        return self.get_obj(pk)
+
+    def update(self, pk, **kwargs):
+        obj = self.get_obj(pk)
+        for key, value in self.data.items():
+            if hasattr(obj, key):
+                setattr(obj, key, value)
+        obj.save()
+        return obj
+
+    def delete(self, pk, **kwargs):
+        obj = self.get_obj(pk)
+        obj.delete()
+        return None
