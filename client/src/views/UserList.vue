@@ -7,7 +7,7 @@
       >
         <div class="username-wrapper">
           <h3 class="username-text">
-            <router-link :to="{name: 'user-profile', params: {uid: user.id}}">
+            <router-link :to="{name: 'user-detail', params: {uid: user.id}}">
               {{user.username}}
             </router-link>
           </h3>
@@ -18,25 +18,22 @@
 </template>
 
 <script>
+import {GET_LIST} from '@store/modules/users/types'
+
 export default {
-  name: 'user-detail-vue',
-  data () {
-    return {
-      users: []
+  name: 'user-list-view',
+  computed: {
+    users () {
+      return this.$store.state.users.list
     }
-  },
-  created () {
-    const url = '/api/users/'
-    this.$http.get(url).then((response) => {
-      return response.json()
-    }).then((data) => {
-      this.users = data.objects
-    })
   },
   methods: {
-    buildUrl (uid) {
-      return `/users/${uid}/profile/`
+    loadUsers () {
+      this.$store.dispatch(GET_LIST)
     }
+  },
+  mounted () {
+    this.loadUsers()
   }
 }
 </script>

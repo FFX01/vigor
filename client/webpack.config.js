@@ -35,7 +35,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue',
       '@components': path.resolve('src/components'),
-      '@views': path.resolve('src/views')
+      '@views': path.resolve('src/views'),
+      '@store': path.resolve('src/store')
     }
   },
   devServer: {

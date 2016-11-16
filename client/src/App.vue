@@ -1,9 +1,16 @@
 <template>
   <div id="app">
     <h1>Vigor</h1>
-    <router-link to="/">Home</router-link>
-    <router-link to="/users/">Users</router-link>
-    <router-view></router-view>
+    <nav>
+      <ul role="navigation">
+        <li><router-link :to="{name: 'home'}">Home</router-link></li>
+        <li><router-link :to="{name: 'user-list'}">Users</router-link></li>
+        <li><router-link :to="{name: 'program-list'}">Programs</router-link></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
