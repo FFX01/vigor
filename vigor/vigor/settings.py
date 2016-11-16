@@ -41,8 +41,8 @@ INSTALLED_APPS = [
 
     # Local apps
     'users.apps.UsersConfig',
-    'disciplines.apps.DisciplinesConfig',
-    'exercises.apps.ExercisesConfig'
+    'styles.apps.StylesConfig',
+    'programs.apps.ProgramsConfig'
 ]
 
 MIDDLEWARE = [
@@ -60,7 +60,9 @@ ROOT_URLCONF = 'vigor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,6 +128,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(os.path.dirname(BASE_DIR), 'client/dist')
+]
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 
 # django-markup settings
 

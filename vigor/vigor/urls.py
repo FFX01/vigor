@@ -15,12 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic.base import TemplateView
 
+from programs.api import ProgramResource
+from styles.api import StyleResource
 from users.api import UserResource
-from disciplines.api import DisciplineResource
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'api/users/', include(UserResource.urls())),
-    url(r'api/disciplines/', include(DisciplineResource.urls()))
+    url(
+        r'^$',
+        TemplateView.as_view(template_name='index.html'),
+        name='home'
+    ),
+    url(r'^admin/', admin.site.urls)
 ]
